@@ -1,0 +1,46 @@
+
+class Protein_Translation
+  attr_accessor :rna
+  $Codon_Protein = {
+    :AUG => "Methionine",
+    :UUU => "Phenylalanine",
+    :UUC	=> "Phenylalanine",
+    :UUA => "Leucine",
+    :UUG =>	"Leucine",
+    :UCU => "Serine",
+    :UCC => "Serine",
+    :UCA => "Serine",
+    :UCG	=> "Serine",
+    :UAU => "Tyrosine",
+    :UAC =>	"Tyrosine",
+    :UGU => "Cysteine",
+    :UGC	=> "Cysteine",
+    :UGG =>	"Tryptophan",
+    :UAA => "STOP",
+    :UAG => "STOP",
+    :UGA => "STOP"
+  }
+  def initialize(rna)
+    @rna = rna
+  end
+  def translation
+    translation_list = []
+    rna.chars.each_slice(3){|interval|
+     translation_list << $Codon_Protein[interval.join.to_sym]
+    }
+   translation_list.slice_before("STOP").each_with_index.map{|word,index|
+   print word if index == 0
+  }
+end
+end
+
+solution = Protein_Translation.new("AUGUUUUCUUAAAUG")
+solution.translation
+
+
+#def self.of_rna(sequence)
+    #sequence.chars.each_slice(3).with_object([]) do |codon, output|
+      #return output if of_codon(codon.join) == 'STOP'
+      #output << of_codon(codon.join)
+    #end
+  #end

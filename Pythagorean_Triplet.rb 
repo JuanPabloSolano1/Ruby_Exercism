@@ -1,0 +1,15 @@
+
+class Triplet
+  attr_accessor :number
+  def initialize(number)
+    @number = number
+  end
+  def pythagorean
+    [*0..@number].combination(3).to_a.flatten.each_cons(3).map{|match|
+      print match if match[0] ** 2 + match[1] ** 2 == match[2] ** 2 && match.reduce(&:+) == @number
+    }
+  end
+end
+
+solution = Triplet.new(396)
+solution.pythagorean

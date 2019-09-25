@@ -1,0 +1,27 @@
+#For want of a nail the shoe was lost.
+#For want of a shoe the horse was lost.
+#For want of a horse the rider was lost.
+#For want of a rider the message was lost.
+#For want of a message the battle was lost.
+#For want of a battle the kingdom was lost.
+#And all for the want of a nail.
+
+class Proverb
+  attr_accessor :list
+  def initialize(list)
+    @list = list
+    $count = (list.length)
+  end
+  def print_proberv
+    while $count >= 1
+    @list.each_with_index{|word,index|
+      puts "For want of a #{@list[index]} the #{@list[index + 1]} was lost" if @list[index + 1] != nil
+      $count -= 1
+    }
+    puts "And all for the want of a #{@list[0]}."
+  end
+end
+end
+
+solution = Proverb.new(["duck", "boat", "horse", "rider", "message", "battle", "kingdom" ,"dinosaur",'alien'])
+print solution.print_proberv
